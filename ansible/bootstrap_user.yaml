@@ -1,0 +1,20 @@
+---
+- hosts: raspberries
+  remote_user: douglas
+  tasks:
+    - name: copy authorized key
+      authorized_key:
+        user: douglas
+        state: present
+        key: "{{ lookup('file', '/Users/douglas/.ssh/id_rsa.pub') }}"
+
+    - name: enable nopasswd sudo for douglas
+      become: yes
+      copy:
+        src: roles/common/files/010_douglas-nopasswd
+        dest: /etc/sudoers.d/010_douglas-nopasswd
+        owner: root
+        group: root
+        mode: 0440
+        force: yes
+        validate: 'visudo -cf %s'
