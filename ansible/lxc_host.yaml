@@ -1,0 +1,6 @@
+---
+- hosts: raspberries
+  remote_user: douglas
+  roles:
+    - lxc_host
+

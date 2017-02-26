@@ -1,0 +1,30 @@
+---
+- name: install lxc package dependencies
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libvirt
+    - lxc
+    - lxc-templates
+    - python3-lxc
+
+- name: configure lxc
+  become: yes
+  copy:
+    src: ../files/default.conf
+    dest: /etc/lxc/default.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: start services
+  become: yes
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - lxc
+    - libvirtd
