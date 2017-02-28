@@ -1,0 +1,43 @@
+---
+- name: install git packages
+  become: yes
+  package:
+    name: git
+    state: latest
+
+- name: enable git-shell
+  become: yes
+  lineinfile:
+    # TODO(dmend): change dest to path when ansible 2.3 comes out
+    dest: /etc/shells
+    regexp: '^/usr/bin/git-shell'
+    line: '/usr/bin/git-shell'
+
+- name: add git user
+  become: yes
+  user:
+    name: git
+    shell: /usr/bin/git-shell
+
+- name: copy authorized key
+  become: yes
+  authorized_key:
+    user: git
+    state: present
+    key: "{{ lookup('file', '/Users/douglas/.ssh/id_rsa.pub') }}"
+
+- name: add git repo
+  become: yes
+  file:
+    path: /var/git/redrobot.io.git
+    state: directory
+    owner: git
+    group: git
+    mode: 0755
+
+- name: init bare repo
+  become: yes
+  become_user: git
+  command: 'git init --bare'
+  args:
+    chdir: /var/git/redrobot.io.git
