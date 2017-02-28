@@ -1,0 +1,21 @@
+---
+- name: clone dotfiles
+  git:
+    repo: https://github.com/dmend/dotfiles.git
+    dest: /home/douglas/.dotfiles
+
+- name: link dotfiles
+  file:
+    src: /home/douglas/.dotfiles/{{ item }}
+    dest: /home/douglas/{{ item }}
+    state: link
+  with_items:
+    - .gitconfig
+    - .gitignore
+    - .tmux.conf
+    - .vimrc
+
+- name: install tmux
+  become: yes
+  package:
+    name: tmux
