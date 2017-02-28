@@ -1,0 +1,24 @@
+---
+- name: install docker
+  become: yes
+  package:
+    name: docker
+    state: latest
+
+- name: start docker service
+  become: yes
+  service:
+    name: docker
+    state: started
+
+#- name: add douglas to docker group
+#  become: yes
+#  user:
+#    name: douglas
+#    groups: docker
+#    append: yes
+
+
+#- name: pull rasberry image
+#  docker_image:
+#    name:

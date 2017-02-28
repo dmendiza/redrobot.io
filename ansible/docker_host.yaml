@@ -1,0 +1,5 @@
+---
+- hosts: raspberries
+  remote_user: douglas
+  roles:
+    - docker_host
