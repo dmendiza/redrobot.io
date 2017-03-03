@@ -1,0 +1,22 @@
+---
+- name: install nginx
+  become: yes
+  package:
+    name: nginx
+    state: latest
+
+- name: configure nginx
+  become: yes
+  copy:
+    src: roles/nginx/files/nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- firewalld:
+    service: http
+    permanent: true
+    state: enabled

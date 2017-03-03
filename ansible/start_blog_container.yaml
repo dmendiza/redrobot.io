@@ -1,0 +1,13 @@
+---
+- hosts: raspberries
+  remote_user: douglas
+  tasks:
+    - include_vars: vault.yaml
+    - name: start blog container
+      docker_container:
+        name: blog_redrobot
+        image: redrobot
+        env:
+          DJANGO_SECRET_KEY: "{{ vault_django_secret_key }}"
+        ports:
+          - "127.0.0.1:8000:8000"
