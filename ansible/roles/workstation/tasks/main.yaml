@@ -22,3 +22,8 @@
   with_items:
     - tmux
     - vim
+
+- name: add ~/Workspaces directory
+  file:
+    dest: /home/douglas/Workspaces
+    state: directory
