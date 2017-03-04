@@ -18,6 +18,7 @@
   user:
     name: git
     shell: /usr/bin/git-shell
+    home: /var/lib/git
 
 - name: copy authorized key
   become: yes
@@ -29,7 +30,7 @@
 - name: add git repo
   become: yes
   file:
-    path: /var/git/redrobot.io.git
+    path: /var/lib/git/redrobot.io.git
     state: directory
     owner: git
     group: git
@@ -40,4 +41,4 @@
   become_user: git
   command: 'git init --bare'
   args:
-    chdir: /var/git/redrobot.io.git
+    chdir: /var/lib/git/redrobot.io.git
