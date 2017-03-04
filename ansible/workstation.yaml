@@ -2,4 +2,5 @@
 - hosts: raspberries
   remote_user: douglas
   roles:
+    - git
     - workstation

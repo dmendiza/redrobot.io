@@ -1,5 +1,5 @@
 ---
-- name: install git packages
+- name: install latest git packages
   become: yes
   package:
     name: git
