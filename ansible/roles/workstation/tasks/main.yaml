@@ -23,7 +23,10 @@
     - tmux
     - vim
 
-- name: add ~/Workspaces directory
+- name: add home directories
   file:
-    dest: /home/douglas/Workspaces
+    dest: /home/douglas/{{ item }}
     state: directory
+  with_items:
+    - Downloads
+    - Workspaces
