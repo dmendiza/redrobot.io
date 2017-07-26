@@ -1,8 +1,8 @@
 ---
-- hosts: raspberries
+- hosts: haineko
   remote_user: douglas
   tasks:
-    - name: copy authorized key
+    - name: copy authorized key for douglas
       authorized_key:
         user: douglas
         state: present
