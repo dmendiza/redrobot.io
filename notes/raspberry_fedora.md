@@ -5,14 +5,20 @@ updated: 2017-07-25
   https://fedoraproject.org/wiki/Raspberry_Pi
 * Resize partition
   https://www.raspberrypi.org/forums/viewtopic.php?f=51&t=45265
-  mkpart primary xfs 4039,199,0 122223,110,1 
-  set 4 lba off
-  sudo xfs_growfs /dev/mmcblk0p4
+
+    mkpart primary xfs 4039,199,0 122223,110,1 
+    set 4 lba off
+    sudo xfs_growfs /dev/mmcblk0p4
+
+* FIXME: ansible can't set the hostname for some reason, so we can't use
+  the bootstrap_host.yaml playbook.  For now set it manually.
+
+    sudo hostnamectl set-hostname haineko
+
 * ansible-playbook -i hosts -k -K bootstrap_user.yaml
 
 TODO:
 
-* ansible-playbook -i hosts -k -K bootstrap_host.yaml
 * ansible-playbook -i hosts lxc_host.yaml
 * ansible-playbook -i hosts docker_host.yaml
 * curl -sSL https://dl.fedoraproject.org/pub/fedora/linux/releases/25/Docker/armhfp/images/Fedora-Docker-Base-25-1.3.armhfp.tar.xz | unxz | sudo docker load
