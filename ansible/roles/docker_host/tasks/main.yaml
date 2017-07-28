@@ -5,39 +5,40 @@
     name: docker
     state: latest
 
+- name: add docker group
+  become: yes
+  group:
+    name: docker
+    state: present
+
+- name: add douglas to docker group
+  become: yes
+  user:
+    name: douglas
+    groups: docker
+    append: yes
+
 - name: start docker service
   become: yes
   service:
     name: docker
     state: started
 
-- name: download fedora image
-  get_url:
-    url: https://dl.fedoraproject.org/pub/fedora/linux/releases/25/Docker/armhfp/images/Fedora-Docker-Base-25-1.3.armhfp.tar.xz
-    dest: /home/douglas/Downloads/Fedora-Docker-Base-25-1.3.armhfp.tar.xz
-    checksum: sha256:95df044b34edf5e0ffe5f5b4903b911e8a5f87b7909f4e2dadd3a279afb37f41
-
-- name: unpack fedora image
-  command: unxz Fedora-Docker-Base-25-1.3.armhfp.tar.xz
-  args:
-    chdir: /home/douglas/Downloads
-    creates: /home/douglas/Downloads/Fedora-Docker-Base-25-1.3.armhfp.tar
-
-- name: import fedora image
-  become: yes
-  docker_image:
-    name: fedora
-    tag: 25
-    load_path: /home/douglas/Downloads/Fedora-Docker-Base-25.1.3.armhfp.tar
-
-#- name: add douglas to docker group
+#- name: download fedora image
+#  get_url:
+#    url: https://dl.fedoraproject.org/pub/fedora/linux/releases/25/Docker/armhfp/images/Fedora-Docker-Base-25-1.3.armhfp.tar.xz
+#    dest: /home/douglas/Downloads/Fedora-Docker-Base-25-1.3.armhfp.tar.xz
+#    checksum: sha256:95df044b34edf5e0ffe5f5b4903b911e8a5f87b7909f4e2dadd3a279afb37f41
+#
+#- name: unpack fedora image
+#  command: unxz Fedora-Docker-Base-25-1.3.armhfp.tar.xz
+#  args:
+#    chdir: /home/douglas/Downloads
+#    creates: /home/douglas/Downloads/Fedora-Docker-Base-25-1.3.armhfp.tar
+#
+#- name: import fedora image
 #  become: yes
-#  user:
-#    name: douglas
-#    groups: docker
-#    append: yes
-
-
-#- name: pull rasberry image
 #  docker_image:
-#    name:
+#    name: fedora
+#    tag: 25
+#    load_path: /home/douglas/Downloads/Fedora-Docker-Base-25.1.3.armhfp.tar
