@@ -1,5 +1,5 @@
 ---
-- hosts: haineko
+- hosts: 192.168.1.155
   remote_user: douglas
   tasks:
     - name: copy authorized key for douglas

@@ -1,0 +1,9 @@
+---
+- hosts: haineko
+  remote_user: douglas
+  tasks:
+    - name: upgrade packages
+      become: yes
+      dnf:
+        name: "*"
+        state: latest

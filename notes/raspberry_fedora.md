@@ -1,16 +1,21 @@
 date: 2017-02-23
-updated: 2017-07-25
+updated: 2017-11-19
 
-* Fedora 26 - Server image
+* Fedora 27 - Server image
   https://fedoraproject.org/wiki/Raspberry_Pi
+
+    unxz Fedora-Minimal-armhfp-27-1.6-sda.raw.xz
+
 * Resize partition
   https://www.raspberrypi.org/forums/viewtopic.php?f=51&t=45265
 
-    mkpart primary xfs 4039,199,0 122223,110,1 
+    mkpart primary ext4 XXX,XXX,XXX 122223,110,1
     set 4 lba off
-    sudo xfs_growfs /dev/mmcblk0p4
 
-* FIXME: ansible can't set the hostname for some reason, so we can't use
+    sudo resize2fs /dev/mmcblk0p4
+
+* ansible-playbook -i hosts -k -K bootstrap_host.yaml
+  FIXME: ansible can't set the hostname for some reason, so we can't use
   the bootstrap_host.yaml playbook.  For now set it manually.
 
     sudo hostnamectl set-hostname haineko
