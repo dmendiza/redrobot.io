@@ -1,0 +1,5 @@
+---
+- hosts: haineko
+  remote_user: douglas
+  roles:
+    - common
