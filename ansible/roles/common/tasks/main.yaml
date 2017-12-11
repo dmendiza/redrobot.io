@@ -1,6 +1,5 @@
 ---
 - name: secure sshd
-  become: yes
   copy:
     src: roles/common/files/sshd_config
     dest: /etc/ssh/sshd_config
@@ -8,3 +7,9 @@
     group: root
     mode: 0600
   notify: restart sshd
+
+- name: install fail2ban
+  package:
+    name: fail2ban-firewalld
+    state: latest
+  notify: restart fail2ban
