@@ -1,0 +1,9 @@
+---
+- hosts: haineko
+  remote_user: douglas
+  tasks:
+    - name: install yubikey-manager
+      become: yes
+      package:
+        name: yubikey-manager
+        state: latest
