@@ -36,19 +36,20 @@
 - name: download fedora image
   become: yes
   get_url:
-    url: https://dl.fedoraproject.org/pub/fedora/linux/releases/26/Docker/armhfp/images/Fedora-Container-Minimal-Base-26-1.5.armhfp.tar.xz
+    url: https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Docker/armhfp/images/Fedora-Docker-Base-27-1.6.armhfp.tar.xz
     dest: /opt/docker/images/
-    checksum: sha256:f2aa1e3cf1b70856d1ee7b215dc41a4e8dbd12c13f2e75b78c48cb589b815197
+    checksum: sha256:1b7a9f0022214bba9e5001a83013d205be290c59185b8e1a13bd05e87d0209bb
 
 - name: extract fedora image
   become: yes
-  command: unxz Fedora-Container-Minimal-Base-26-1.5.armhfp.tar.xz
+  command: unxz Fedora-Docker-Base-27-1.6.armhfp.tar.xz
   args:
     chdir: /opt/docker/images
-    creates: /opt/docker/images/Fedora-Container-Minimal-Base-26-1.5.armhfp.tar
+    creates: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
 
 - name: load fedora image
   docker_image:
     name: fedora
-    tag: 26
-    load_path: /opt/docker/images/Fedora-Container-Minimal-Base-26-1.5.armhfp.tar
+    state: present
+    tag: 27
+    load_path: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
