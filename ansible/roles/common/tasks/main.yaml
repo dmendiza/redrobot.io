@@ -13,3 +13,8 @@
     name: fail2ban-firewalld
     state: latest
   notify: restart fail2ban
+
+- name: enable fail2ban
+  service:
+    name: fail2ban
+    enabled: yes

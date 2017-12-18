@@ -26,6 +26,7 @@
   service:
     name: docker
     state: started
+    enabled: yes
 
 - name: create directory for image downloads
   become: yes
@@ -47,9 +48,10 @@
     chdir: /opt/docker/images
     creates: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
 
-- name: load fedora image
-  docker_image:
-    name: fedora
-    state: present
-    tag: 27
-    load_path: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
+# TODO(dmend): Figure out why this task fails
+#- name: load fedora image
+#  docker_image:
+#    name: fedora
+#    state: present
+#    tag: 27
+#    load_path: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
