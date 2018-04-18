@@ -2,7 +2,7 @@
 - hosts: haineko
   remote_user: douglas
   tasks:
-    - name: upgrade packages
+    - name: update packages
       become: yes
       dnf:
         name: "*"

@@ -14,14 +14,13 @@ updated: 2018-04-05
     diskutil unmoutDisk /dev/disk2
     dd bs=4m if=Fedora-Xfce-armhfp-28_Beta-1.3-sda.raw of=/dev/disk2
 
-
 * Resize partition
   https://www.raspberrypi.org/forums/viewtopic.php?f=51&t=45265
 
-    mkpart primary ext4 XXX,XXX,XXX 122223,110,1
+    mkpart primary xfs XXX,XXX,XXX 122223,110,1
     set 4 lba off
 
-    sudo resize2fs /dev/mmcblk0p4
+    sudo xfs_growfs /
 
 * ansible-playbook -i hosts -k -K bootstrap_host.yaml
   FIXME: ansible can't set the hostname for some reason, so we can't use
@@ -30,6 +29,8 @@ updated: 2018-04-05
     sudo hostnamectl set-hostname haineko
 
 * ansible-playbook -i hosts -k -K bootstrap_user.yaml
+* ansible-playbook -i hosts update.yaml
+* ansible-playbook -i hosts common.yaml
 
 TODO:
 
