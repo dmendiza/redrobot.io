@@ -1,9 +1,9 @@
 ---
 - hosts: haineko
   remote_user: douglas
+  become: yes
   tasks:
     - name: update packages
-      become: yes
       dnf:
         name: "*"
         state: latest
