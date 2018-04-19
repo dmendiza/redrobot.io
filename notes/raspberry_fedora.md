@@ -17,6 +17,10 @@ updated: 2018-04-05
 * Resize partition
   https://www.raspberrypi.org/forums/viewtopic.php?f=51&t=45265
 
+    sudo parted /dev/mmcblk0
+    unit chs
+    print
+    rm 4
     mkpart primary xfs XXX,XXX,XXX 122223,110,1
     set 4 lba off
 
