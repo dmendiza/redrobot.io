@@ -6,7 +6,7 @@
       authorized_key:
         user: douglas
         state: present
-        key: "{{ lookup('file', '/Users/douglas/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', 'roles/common/files/authorized_keys') }}"
 
     - name: enable nopasswd sudo for douglas
       become: yes
