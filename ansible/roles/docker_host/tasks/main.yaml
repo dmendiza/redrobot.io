@@ -6,7 +6,7 @@
     state: latest
   with_items:
     - docker
-    - python3-docker-py
+    - python3-docker
 
 - name: add docker group
   become: yes
@@ -28,25 +28,25 @@
     state: started
     enabled: yes
 
-- name: create directory for image downloads
-  become: yes
-  file:
-    path: /opt/docker/images
-    state: directory
-
-- name: download fedora image
-  become: yes
-  get_url:
-    url: https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Docker/armhfp/images/Fedora-Docker-Base-27-1.6.armhfp.tar.xz
-    dest: /opt/docker/images/
-    checksum: sha256:1b7a9f0022214bba9e5001a83013d205be290c59185b8e1a13bd05e87d0209bb
-
-- name: extract fedora image
-  become: yes
-  command: unxz Fedora-Docker-Base-27-1.6.armhfp.tar.xz
-  args:
-    chdir: /opt/docker/images
-    creates: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
+#- name: create directory for image downloads
+#  become: yes
+#  file:
+#    path: /opt/docker/images
+#    state: directory
+#
+#- name: download fedora image
+#  become: yes
+#  get_url:
+#    url: https://dl.fedoraproject.org/pub/fedora/linux/releases/27/Docker/armhfp/images/Fedora-Docker-Base-27-1.6.armhfp.tar.xz
+#    dest: /opt/docker/images/
+#    checksum: sha256:1b7a9f0022214bba9e5001a83013d205be290c59185b8e1a13bd05e87d0209bb
+#
+#- name: extract fedora image
+#  become: yes
+#  command: unxz Fedora-Docker-Base-27-1.6.armhfp.tar.xz
+#  args:
+#    chdir: /opt/docker/images
+#    creates: /opt/docker/images/Fedora-Docker-Base-27-1.6.armhfp.tar
 
 # TODO(dmend): Figure out why this task fails
 #- name: load fedora image

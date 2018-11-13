@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-ansible = "==2.6.3"
+ansible = "*"
 pelican = "*"
 
 [dev-packages]
+ipython = "*"
 
 [requires]
 python_version = "3.7"

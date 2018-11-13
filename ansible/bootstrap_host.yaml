@@ -1,7 +1,0 @@
-# FIXME: This playbook does not work on my Pi3 running Fedora 26
----
-- hosts: 192.168.1.155
-  remote_user: douglas
-  tasks:
-    - hostname:
-        name: haineko
