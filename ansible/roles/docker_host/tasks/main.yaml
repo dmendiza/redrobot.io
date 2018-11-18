@@ -6,6 +6,7 @@
     state: latest
   with_items:
     - docker
+    - docker-compose
     - python3-docker
 
 - name: add docker group
