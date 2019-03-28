@@ -1,5 +1,5 @@
 ---
-- hosts: haineko
+- hosts: all
   remote_user: douglas
   become: yes
   roles:
