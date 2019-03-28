@@ -9,7 +9,7 @@
     src: /home/douglas/.dotfiles/{{ item }}
     dest: /home/douglas/{{ item }}
     state: link
-  with_items:
+  loop:
     - .gitconfig
     - .gitignore
     - .tmux.conf
@@ -19,7 +19,7 @@
   become: yes
   package:
     name: '{{ item }}'
-  with_items:
+  loop:
     - tmux
     - vim
 
@@ -27,6 +27,11 @@
   file:
     dest: /home/douglas/{{ item }}
     state: directory
-  with_items:
+  loop:
     - Downloads
     - Workspaces
+
+- name: clone pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: /home/douglas/.pyenv

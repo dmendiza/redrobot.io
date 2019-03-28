@@ -4,7 +4,7 @@
   package:
     name: "{{ item }}"
     state: latest
-  with_items:
+  loop:
     - docker
     - docker-compose
     - python3-docker
