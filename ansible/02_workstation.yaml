@@ -3,3 +3,4 @@
   remote_user: douglas
   roles:
     - workstation
+    - podman_host

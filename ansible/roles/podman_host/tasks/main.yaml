@@ -1,0 +1,9 @@
+---
+- name: install podman
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - podman
+    - cockpit-podman

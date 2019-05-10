@@ -43,6 +43,7 @@
   package:
     name: '{{ item }}'
   loop:
+    - certbot
     - tmux
     - vim
 
