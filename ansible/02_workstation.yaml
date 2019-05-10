@@ -1,7 +1,5 @@
 ---
-- hosts: haineko
+- hosts: all
   remote_user: douglas
   roles:
-    - git
-    - docker_host
     - workstation

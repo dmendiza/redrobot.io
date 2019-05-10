@@ -1,8 +1,30 @@
 ---
+- name: install development tools
+  become: yes
+  dnf:
+    name: '@development tools'
+    state: present
+
 - name: clone dotfiles
   git:
     repo: https://github.com/dmend/dotfiles.git
     dest: /home/douglas/.dotfiles
+
+
+- name: check existing bash config
+  stat:
+    path: /home/douglas/{{ item }}
+  loop:
+    - .bashrc
+    - .bash_profile
+  register: stats
+
+- name: delete default bash config
+  file:
+    dest: /home/douglas/{{ item.item }}
+    state: absent
+  loop: "{{ stats.results }}"
+  when: item.stat.isreg
 
 - name: link dotfiles
   file:
@@ -10,8 +32,9 @@
     dest: /home/douglas/{{ item }}
     state: link
   loop:
+    - .bashrc
+    - .bash_profile
     - .gitconfig
-    - .gitignore
     - .tmux.conf
     - .vimrc
 
