@@ -1,0 +1,5 @@
+---
+- hosts: all
+  remote_user: douglas
+  roles:
+    - podman_host

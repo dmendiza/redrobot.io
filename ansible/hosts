@@ -1,1 +1,1 @@
-192.168.1.227       ansible_python_interpreter=/usr/bin/python3
+bowser.redrobot.io ansible_python_interpreter=/usr/bin/python3

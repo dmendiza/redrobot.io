@@ -7,3 +7,10 @@
   loop:
     - podman
     - cockpit-podman
+
+- name: start podman socket (for cockpit)
+  become: yes
+  service:
+    name: io.podman.socket
+    state: started
+    enabled: yes
