@@ -1,15 +1,24 @@
 ---
-- name: install development tools
+- name: install workstation packages
   become: yes
-  dnf:
-    name: '@development tools'
-    state: present
+  package:
+    name: '{{ item }}'
+  loop:
+    - tmux
+    - vim
 
-- name: clone dotfiles
+- name: add home directories
+  file:
+    dest: /home/douglas/{{ item }}
+    state: directory
+  loop:
+    - Downloads
+    - Workspaces
+
+- name: clone dotfiles repo
   git:
-    repo: https://github.com/dmend/dotfiles.git
+    repo: 'https://github.com/dmend/dotfiles.git'
     dest: /home/douglas/.dotfiles
-
 
 - name: check existing bash config
   stat:
@@ -24,7 +33,7 @@
     dest: /home/douglas/{{ item.item }}
     state: absent
   loop: "{{ stats.results }}"
-  when: item.stat.isreg
+  when: item.stat.exists and item.stat.isreg
 
 - name: link dotfiles
   file:
@@ -38,24 +47,12 @@
     - .tmux.conf
     - .vimrc
 
-- name: install workstation packages
-  become: yes
-  package:
-    name: '{{ item }}'
-  loop:
-    - certbot
-    - tmux
-    - vim
-
-- name: add home directories
-  file:
-    dest: /home/douglas/{{ item }}
-    state: directory
-  loop:
-    - Downloads
-    - Workspaces
-
 - name: clone pyenv
   git:
-    repo: https://github.com/pyenv/pyenv.git
+    repo: 'https://github.com/pyenv/pyenv.git'
     dest: /home/douglas/.pyenv
+
+- name: clone pyenv-virtualenv
+  git:
+    repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
+    dest: /home/douglas/.pyenv/plugins/pyenv-virtualenv

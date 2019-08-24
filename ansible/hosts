@@ -1,1 +1,2 @@
 bowser.redrobot.io ansible_python_interpreter=/usr/bin/python3
+toad               ansible_python_interpreter=/usr/bin/python3

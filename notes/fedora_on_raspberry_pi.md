@@ -79,7 +79,7 @@ So let's verify the image we just downloaded:
 
   Now we're ready to burn the image!
 
-      dd bs=4m if=Fedora-Server-30-1.2.aarch64.raw of=/dev/mmcblk0 status=progress
+      sudo dd bs=4M if=Fedora-Server-30-1.2.aarch64.raw of=/dev/mmcblk0 status=progress
 
 * There's just one more thing left before we can boot up the Raspberry, and
   that is to resize the system partition.  The default partition in the image
