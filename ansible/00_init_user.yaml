@@ -1,18 +1,18 @@
 ---
 - hosts: all
-  remote_user: douglas
+  remote_user: "{{ username }}"
   tasks:
-    - name: copy authorized key for douglas
+    - name: "copy authorized key for {{ username }}"
       authorized_key:
-        user: douglas
+        user: "{{ username }}"
         state: present
         key: "{{ lookup('file', 'roles/common/files/authorized_keys') }}"
 
-    - name: enable nopasswd sudo for douglas
+    - name: "enable nopasswd sudo for {{ username }}"
       become: yes
-      copy:
-        src: roles/common/files/010_douglas-nopasswd
-        dest: /etc/sudoers.d/010_douglas-nopasswd
+      template:
+        src: roles/common/templates/010_username-nopasswd.j2
+        dest: "/etc/sudoers.d/010_{{ username }}-nopasswd"
         owner: root
         group: root
         mode: 0440
