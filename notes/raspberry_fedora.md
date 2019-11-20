@@ -48,3 +48,16 @@ TODO:
   sudo docker run -d -e DJANGO_SECRET_KEY=$(cat django-secret-key) -p 8000:8000 redrobot
 
 * ansible-playbook -i hosts nginx.yaml
+
+
+TODO(dmend):
+
+This is the latest (F31) way of resizing the partition on the sd card:
+
+sudo parted
+  print
+  resizepart 3
+sudo pvresize /dev/mmcblk0p3
+sudo lvextend /dev/fedora/root /dev/mmcblk0pe
+sudo xfs_growfs /
+
