@@ -1,0 +1,9 @@
+---
+all:
+  children:
+    dmz:
+      hosts:
+        bowser:
+    infra:
+      hosts:
+        toad

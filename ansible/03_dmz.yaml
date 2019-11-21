@@ -1,0 +1,7 @@
+---
+- hosts: dmz
+  become: yes
+  roles:
+    - common
+    - podman_host
+    - cert_manager
