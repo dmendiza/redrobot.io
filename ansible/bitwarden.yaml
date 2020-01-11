@@ -1,0 +1,6 @@
+---
+- hosts: dmz
+  remote_user: douglas
+  become: yes
+  roles:
+    - bitwarden

@@ -1,0 +1,15 @@
+---
+- name: add bitwarden user
+  user:
+    name: bitwarden
+    shell: /sbin/nologin
+
+- name: create data dirs
+  file:
+    path: "{{ item }}"
+    owner: bitwarden
+    group: bitwarden
+    state: directory
+  loop:
+    - /etc/bitwarden/ssl
+    - /var/lib/bitwarden/data
