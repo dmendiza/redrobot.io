@@ -4,6 +4,7 @@
   package:
     name: '{{ item }}'
   loop:
+    - golang
     - tmux
     - vim
 
