@@ -14,7 +14,16 @@
     state: latest
   notify: restart fail2ban
 
-- name: enable fail2ban
+- name: install tuned
+  package:
+    name: tuned
+    state: latest
+  notify: restart tuned
+
+- name: enable services
   service:
-    name: fail2ban
+    name: "{{ item }}"
     enabled: yes
+  loop:
+    - fail2ban
+    - tuned
