@@ -13,7 +13,7 @@ PasswordAuthentication no
 ChallengeResponseAuthentication no
 
 # GSSAPI options
-GSSAPIAuthentication yes
+GSSAPIAuthentication no
 GSSAPICleanupCredentials no
 
 # WARNING: 'UsePAM no' is not supported in Fedora and may cause several
