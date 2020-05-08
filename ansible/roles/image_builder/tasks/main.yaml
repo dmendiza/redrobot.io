@@ -1,0 +1,6 @@
+---
+- name: install buildah
+  become: yes
+  package:
+    name: buildah
+    state: latest
