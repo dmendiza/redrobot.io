@@ -7,3 +7,8 @@
       dnf:
         name: "*"
         state: latest
+      register: update_status
+
+    - name: reboot when updated
+      reboot:
+      when: update_status.changed
